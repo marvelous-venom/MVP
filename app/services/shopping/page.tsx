@@ -203,15 +203,15 @@ export default function ShoppingServicePage() {
               buy as an international student.
             </p>
           </div>
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-3xl my-auto ">
             <YouTubeEmbed
-              videoId="your-shopping-video-id"
+              videoId="https://www.youtube.com/watch?v=6YgrCPNtuRk&list=PLZCj0qfI2XQUiyTohIF3lBT0Qxra4LXtN&ab_channel=SanjeevSriram"
               title="U.S. Shopping Guide for International Students"
             />
             <p className="text-center mt-4 text-gray-500">
               Subscribe to our{" "}
               <a
-                href="https://www.youtube.com/@SanjeevSriram"
+                href="https://www.youtube.com/@sanjeevsriram"
                 className="text-indigo-600 hover:underline"
                 target="_blank"
                 rel="noopener noreferrer"

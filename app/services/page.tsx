@@ -178,6 +178,132 @@ export default function ServicesPage() {
         </div>
       </div>
 
+      {/* Latest Guides */}
+      <div className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900">
+              Latest Student Guides
+            </h2>
+            <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
+              In-depth resources to help you navigate your student journey
+            </p>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+            {/* Guide Card 1 */}
+            <Link
+              href="/services/visas/guides/social-security-number"
+              className="group bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 hover:shadow-md transition-all"
+            >
+              <div className="relative h-40 bg-gray-100">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <FaPassport className="h-12 w-12 text-gray-300" />
+                </div>
+              </div>
+              <div className="p-6">
+                <div className="flex items-center mb-2">
+                  <span className="bg-red-100 text-red-600 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                    Visa
+                  </span>
+                  <span className="ml-2 text-xs text-gray-500">
+                    Nov 4, 2023
+                  </span>
+                </div>
+                <h3 className="text-lg font-medium text-gray-900 group-hover:text-blue-600">
+                  Social Security Number for International Students
+                </h3>
+                <p className="mt-2 text-sm text-gray-500">
+                  Everything you need to know about obtaining and using an SSN
+                  during your studies in the US.
+                </p>
+              </div>
+            </Link>
+
+            {/* Guide Card 2 */}
+            <Link
+              href="/services/housing/guides/finding-accommodation"
+              className="group bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 hover:shadow-md transition-all"
+            >
+              <div className="relative h-40 bg-gray-100">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <FaHome className="h-12 w-12 text-gray-300" />
+                </div>
+              </div>
+              <div className="p-6">
+                <div className="flex items-center mb-2">
+                  <span className="bg-indigo-100 text-indigo-600 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                    Housing
+                  </span>
+                  <span className="ml-2 text-xs text-gray-500">
+                    Nov 2, 2023
+                  </span>
+                </div>
+                <h3 className="text-lg font-medium text-gray-900 group-hover:text-blue-600">
+                  How to Find Student Accommodation
+                </h3>
+                <p className="mt-2 text-sm text-gray-500">
+                  A comprehensive guide to finding affordable and convenient
+                  housing options near your campus.
+                </p>
+              </div>
+            </Link>
+
+            {/* Guide Card 3 */}
+            <Link
+              href="/services/jobs/guides/part-time-opportunities"
+              className="group bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 hover:shadow-md transition-all"
+            >
+              <div className="relative h-40 bg-gray-100">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <FaBriefcase className="h-12 w-12 text-gray-300" />
+                </div>
+              </div>
+              <div className="p-6">
+                <div className="flex items-center mb-2">
+                  <span className="bg-blue-100 text-blue-600 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                    Jobs
+                  </span>
+                  <span className="ml-2 text-xs text-gray-500">
+                    Nov 3, 2023
+                  </span>
+                </div>
+                <h3 className="text-lg font-medium text-gray-900 group-hover:text-blue-600">
+                  Exploring Part-Time Job Opportunities
+                </h3>
+                <p className="mt-2 text-sm text-gray-500">
+                  Learn about work permissions, on-campus jobs, and finding
+                  part-time work as an international student.
+                </p>
+              </div>
+            </Link>
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link
+              href="/blog"
+              className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+            >
+              View all guides
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="ml-2 h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </div>
+
       {/* All Services */}
       <div className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

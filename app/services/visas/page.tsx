@@ -7,6 +7,7 @@ import {
   FaCalendarAlt,
   FaGraduationCap,
   FaIdCard,
+  FaFileAlt,
 } from "react-icons/fa";
 import { YouTubeEmbed } from "@/app/components/ui/YouTubeEmbed";
 
@@ -257,6 +258,89 @@ export default function VisasServicePage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Recent Visa Guides */}
+      <div className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-extrabold text-gray-900">
+              Latest Visa Guides
+            </h2>
+            <p className="mt-4 text-lg text-gray-500">
+              Detailed guides to help you navigate visa applications and
+              maintain your status.
+            </p>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {/* Guide 1 */}
+            <Link
+              href="/services/visas/guides/ds160-guide"
+              className="group bg-white rounded-lg shadow-sm p-6 border border-gray-100 hover:shadow-md transition-all"
+            >
+              <div className="flex items-start mb-4">
+                <div className="rounded-full p-3 bg-gray-100 text-gray-600">
+                  <FaFileAlt className="h-6 w-6" />
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-lg font-medium text-gray-900 group-hover:text-yellow-600">
+                    A Comprehensive Guide to Filling Out DS-160
+                  </h3>
+                  <p className="mt-1 text-sm text-gray-500">August 13, 2023</p>
+                </div>
+              </div>
+              <p className="text-gray-600">
+                Step-by-step instructions for completing the DS-160 form
+                correctly for your US visa application.
+              </p>
+            </Link>
+
+            {/* Guide 2 */}
+            <Link
+              href="/services/visas/guides/visa-slots"
+              className="group bg-white rounded-lg shadow-sm p-6 border border-gray-100 hover:shadow-md transition-all"
+            >
+              <div className="flex items-start mb-4">
+                <div className="rounded-full p-3 bg-gray-100 text-gray-600">
+                  <FaCalendarAlt className="h-6 w-6" />
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-lg font-medium text-gray-900 group-hover:text-yellow-600">
+                    Visa Slot Booking Tips
+                  </h3>
+                  <p className="mt-1 text-sm text-gray-500">August 15, 2023</p>
+                </div>
+              </div>
+              <p className="text-gray-600">
+                Strategies for securing your preferred visa interview
+                appointment slots and avoiding delays.
+              </p>
+            </Link>
+
+            {/* Guide 3 */}
+            <Link
+              href="/services/visas/guides/i20-form"
+              className="group bg-white rounded-lg shadow-sm p-6 border border-gray-100 hover:shadow-md transition-all"
+            >
+              <div className="flex items-start mb-4">
+                <div className="rounded-full p-3 bg-gray-100 text-gray-600">
+                  <FaIdCard className="h-6 w-6" />
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-lg font-medium text-gray-900 group-hover:text-yellow-600">
+                    The I-20 Form: Everything You Need to Know
+                  </h3>
+                  <p className="mt-1 text-sm text-gray-500">March 19, 2023</p>
+                </div>
+              </div>
+              <p className="text-gray-600">
+                Understanding the I-20 document, its importance, and how to
+                maintain proper status.
+              </p>
+            </Link>
           </div>
         </div>
       </div>

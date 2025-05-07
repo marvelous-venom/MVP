@@ -13,10 +13,10 @@ export const Header: React.FC = () => {
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="flex items-center">
               <div className="w-8 h-8 bg-blue-600 rounded-md flex items-center justify-center text-white font-bold text-lg mr-2">
-                SG
+                MT
               </div>
               <span className="text-xl font-bold text-gray-900">
-                StudyGlobal
+                MarvelousTalks
               </span>
             </Link>
           </div>

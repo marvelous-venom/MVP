@@ -11,8 +11,10 @@ export const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({
   title,
 }) => {
   return (
-    <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg">
+    <div className="aspect-w-16 aspect-h-[10] rounded-lg overflow-hidden shadow-lg">
       <iframe
+        width={1280}
+        height={720}
         src={`https://www.youtube.com/embed/${videoId}`}
         title={title}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

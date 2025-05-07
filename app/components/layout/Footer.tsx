@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
                 SG
               </div>
               <span className="text-xl font-bold text-gray-900">
-                StudyGlobal
+                MarvelousTalks
               </span>
             </Link>
             <p className="mt-4 text-sm text-gray-500">
@@ -190,7 +190,8 @@ export const Footer: React.FC = () => {
 
         <div className="mt-12 border-t border-gray-200 pt-8">
           <p className="text-base text-gray-400 text-center">
-            &copy; {new Date().getFullYear()} StudyGlobal. All rights reserved.
+            &copy; {new Date().getFullYear()} MarvelousTalks. All rights
+            reserved.
           </p>
           <div className="mt-4 flex justify-center space-x-6">
             <Link

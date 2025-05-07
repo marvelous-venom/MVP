@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import  Breadcrumbs  from "../components/app/BreadCrumbs";
 import { FilterableList } from 
-import { CalendarIcon, UserIcon, ClockIcon } from "@heroicons/react/24/outline";
+import {UserIcon, ClockIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
 interface BlogPost {
