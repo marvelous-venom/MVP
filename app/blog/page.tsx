@@ -1,10 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
-import  Breadcrumbs  from "../components/app/BreadCrumbs";
-import { FilterableList } from 
-import {UserIcon, ClockIcon } from "@heroicons/react/24/outline";
+import React from "react";
+import Breadcrumbs from "../components/app/BreadCrumbs";
+import { UserIcon, ClockIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import FilterableList, {
+  SortOption,
+} from "../components/interactive/FilterableList";
 
 interface BlogPost {
   id: string;
@@ -244,10 +246,10 @@ const BlogPage = () => {
   ];
 
   // Sort options
-  const sortOptions = [
-    { id: "date", label: "Most Recent", defaultDirection: "desc" },
-    { id: "readTime", label: "Reading Time", defaultDirection: "asc" },
-    { id: "title", label: "Title", defaultDirection: "asc" },
+  const sortOptions: SortOption[] = [
+    { id: "date", label: "Most Recent", defaultDirection: "desc" as const },
+    { id: "readTime", label: "Reading Time", defaultDirection: "asc" as const },
+    { id: "title", label: "Title", defaultDirection: "asc" as const },
   ];
 
   // Featured posts (at the top)
@@ -418,8 +420,15 @@ const BlogPage = () => {
               renderItem={renderBlogPost}
               filterOptions={filterOptions}
               sortOptions={sortOptions}
-              keyExtractor={(post: { id: never; }) => post.id}
-              searchKeys={["title", "excerpt", "author.name", "tags"]}
+              keyExtractor={(post: BlogPost) => post.id}
+              searchKeys={
+                [
+                  "title",
+                  "excerpt",
+                  "author.name",
+                  "tags",
+                ] as (keyof BlogPost)[]
+              }
               emptyState={
                 <div className="text-center py-12">
                   <h3 className="mt-2 text-base font-semibold text-gray-900">
@@ -473,7 +482,8 @@ const BlogPage = () => {
                   </div>
                 </form>
                 <p className="mt-3 text-sm text-indigo-500">
-                  We&apos;ll never share your email. You can unsubscribe at any time.
+                  We&apos;ll never share your email. You can unsubscribe at any
+                  time.
                 </p>
               </div>
             </div>

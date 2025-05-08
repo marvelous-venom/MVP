@@ -1,8 +1,13 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { HeartIcon, TrashIcon, ShareIcon, FolderIcon, PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
+import {
+  HeartIcon,
+  TrashIcon,
+  ShareIcon,
+  PlusIcon,
+} from "@heroicons/react/24/outline";
+// import { HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
 
 export interface SavedItem {
   id: string;
@@ -13,7 +18,7 @@ export interface SavedItem {
   tags?: string[];
   category?: string;
   savedAt: string | Date;
-  data?: Record<string, any>;
+  data?: Record<string, unknown>;
 }
 
 interface SavedItemsListProps {
@@ -39,7 +44,6 @@ const SavedItemsList: React.FC<SavedItemsListProps> = ({
   onItemShare,
   onCategoryCreate,
   onCategoryChange,
-  allowAddingItems = false,
   allowCategoryCreation = true,
   categories: propCategories = [],
   emptyState,
@@ -47,14 +51,14 @@ const SavedItemsList: React.FC<SavedItemsListProps> = ({
   saveToLocalStorage = true,
   renderCustomItem,
   className = "",
-  title = "Saved Items"
+  title = "Saved Items",
 }) => {
   const [items, setItems] = useState<SavedItem[]>(initialItems);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [isAddingCategory, setIsAddingCategory] = useState(false);
   const [newCategoryName, setNewCategoryName] = useState("");
   const [categories, setCategories] = useState<string[]>(propCategories);
-  
+
   // Load saved items from localStorage if enabled
   useEffect(() => {
     if (saveToLocalStorage && typeof window !== "undefined") {
@@ -65,8 +69,10 @@ const SavedItemsList: React.FC<SavedItemsListProps> = ({
         } else {
           setItems(initialItems);
         }
-        
-        const savedCategories = localStorage.getItem(`${storageKey}_categories`);
+
+        const savedCategories = localStorage.getItem(
+          `${storageKey}_categories`
+        );
         if (savedCategories) {
           setCategories(JSON.parse(savedCategories));
         } else {
@@ -80,103 +86,107 @@ const SavedItemsList: React.FC<SavedItemsListProps> = ({
       setCategories(propCategories);
     }
   }, [initialItems, propCategories, saveToLocalStorage, storageKey]);
-  
+
   // Save items to localStorage when they change
   useEffect(() => {
     if (saveToLocalStorage && typeof window !== "undefined") {
       try {
         localStorage.setItem(storageKey, JSON.stringify(items));
-        localStorage.setItem(`${storageKey}_categories`, JSON.stringify(categories));
+        localStorage.setItem(
+          `${storageKey}_categories`,
+          JSON.stringify(categories)
+        );
       } catch (error) {
         console.error("Error saving items to localStorage:", error);
       }
     }
   }, [items, categories, saveToLocalStorage, storageKey]);
-  
+
   // Get all unique categories from items
-  const allCategories = [...new Set([...categories, ...items.map(item => item.category).filter(Boolean) as string[])];
-  
+  const allCategories = [
+    ...new Set([
+      ...categories,
+      ...(items.map((item) => item.category).filter(Boolean) as string[]),
+    ]),
+  ];
+
   // Filter items by selected category
-  const filteredItems = selectedCategory === "all"
-    ? items
-    : items.filter(item => item.category === selectedCategory);
-  
+  const filteredItems =
+    selectedCategory === "all"
+      ? items
+      : items.filter((item) => item.category === selectedCategory);
+
   // Add a new item
-  const addItem = (item: SavedItem) => {
-    const newItem = {
-      ...item,
-      savedAt: new Date().toISOString()
-    };
-    setItems(prevItems => [...prevItems, newItem]);
-  };
-  
+
   // Remove an item
   const removeItem = (itemId: string) => {
-    const itemToRemove = items.find(item => item.id === itemId);
+    const itemToRemove = items.find((item) => item.id === itemId);
     if (itemToRemove) {
       if (onItemRemove) {
         onItemRemove(itemToRemove);
       }
-      setItems(prevItems => prevItems.filter(item => item.id !== itemId));
+      setItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
     }
   };
-  
+
   // Share an item
   const shareItem = (itemId: string) => {
-    const item = items.find(item => item.id === itemId);
+    const item = items.find((item) => item.id === itemId);
     if (item && onItemShare) {
       onItemShare(item);
     }
   };
-  
+
   // Handle category change for an item
   const handleCategoryChange = (itemId: string, category: string) => {
-    setItems(prevItems =>
-      prevItems.map(item =>
+    setItems((prevItems) =>
+      prevItems.map((item) =>
         item.id === itemId ? { ...item, category } : item
       )
     );
-    
+
     if (onCategoryChange) {
       onCategoryChange(itemId, category);
     }
   };
-  
+
   // Create a new category
   const handleCreateCategory = () => {
     if (!newCategoryName.trim()) return;
-    
+
     const categoryName = newCategoryName.trim();
     if (!categories.includes(categoryName)) {
-      setCategories(prevCategories => [...prevCategories, categoryName]);
-      
+      setCategories((prevCategories) => [...prevCategories, categoryName]);
+
       if (onCategoryCreate) {
         onCategoryCreate(categoryName);
       }
     }
-    
+
     setNewCategoryName("");
     setIsAddingCategory(false);
   };
-  
+
   // Format date for display
   const formatDate = (dateString: string | Date): string => {
     const date = new Date(dateString);
     return date.toLocaleDateString(undefined, {
       year: "numeric",
       month: "short",
-      day: "numeric"
+      day: "numeric",
     });
   };
-  
+
   // Render the empty state
   const renderEmptyState = () => {
     if (emptyState) return emptyState;
-    
+
     return (
       <div className="text-center py-12">
         <HeartIcon className="mx-auto h-12 w-12 text-gray-400" />
-        <h3 className="mt-2 text-base font-semibold text-gray-900">No saved items</h3>
+        <h3 className="mt-2 text-base font-semibold text-gray-900">
+          No saved items
+        </h3>
         <p className="mt-1 text-sm text-gray-500">
           Items you save will appear here.
         </p>
@@ -203,7 +213,7 @@ const SavedItemsList: React.FC<SavedItemsListProps> = ({
             )}
           </div>
         </div>
-        
+
         {/* Category tabs */}
         {allCategories.length > 0 && (
           <div className="mt-4 flex space-x-1 overflow-x-auto py-2">
@@ -218,7 +228,7 @@ const SavedItemsList: React.FC<SavedItemsListProps> = ({
             >
               All
             </button>
-            
+
             {allCategories.map((category) => (
               <button
                 key={category}
@@ -235,7 +245,7 @@ const SavedItemsList: React.FC<SavedItemsListProps> = ({
             ))}
           </div>
         )}
-        
+
         {/* New category input */}
         {isAddingCategory && (
           <div className="mt-4 flex items-center space-x-2">
@@ -266,7 +276,7 @@ const SavedItemsList: React.FC<SavedItemsListProps> = ({
           </div>
         )}
       </div>
-      
+
       {/* Content */}
       <div className="px-4 py-5 sm:p-6">
         {filteredItems.length === 0 ? (
@@ -289,14 +299,14 @@ const SavedItemsList: React.FC<SavedItemsListProps> = ({
                         />
                       </div>
                     )}
-                    
+
                     {/* Content */}
                     <div className="flex-1 min-w-0">
                       <h3 className="text-base font-medium text-gray-900 truncate">
                         {item.url ? (
-                          <a 
-                            href={item.url} 
-                            target="_blank" 
+                          <a
+                            href={item.url}
+                            target="_blank"
                             rel="noopener noreferrer"
                             className="hover:text-indigo-600"
                           >
@@ -306,23 +316,23 @@ const SavedItemsList: React.FC<SavedItemsListProps> = ({
                           item.title
                         )}
                       </h3>
-                      
+
                       {item.description && (
                         <p className="mt-1 text-sm text-gray-500 line-clamp-2">
                           {item.description}
                         </p>
                       )}
-                      
+
                       <div className="mt-2 flex items-center text-xs text-gray-500">
                         <span>Saved {formatDate(item.savedAt)}</span>
-                        
+
                         {item.category && (
                           <>
                             <span className="mx-1">•</span>
                             <span>{item.category}</span>
                           </>
                         )}
-                        
+
                         {item.tags && item.tags.length > 0 && (
                           <>
                             <span className="mx-1">•</span>
@@ -340,7 +350,7 @@ const SavedItemsList: React.FC<SavedItemsListProps> = ({
                         )}
                       </div>
                     </div>
-                    
+
                     {/* Actions */}
                     <div className="ml-4 flex flex-shrink-0 space-x-2">
                       {/* Category dropdown */}
@@ -348,7 +358,9 @@ const SavedItemsList: React.FC<SavedItemsListProps> = ({
                         <div className="relative">
                           <select
                             value={item.category || ""}
-                            onChange={(e) => handleCategoryChange(item.id, e.target.value)}
+                            onChange={(e) =>
+                              handleCategoryChange(item.id, e.target.value)
+                            }
                             className="block w-full rounded-md border-gray-300 py-1 pl-3 pr-10 text-xs focus:border-indigo-500 focus:ring-indigo-500"
                           >
                             <option value="">No category</option>
@@ -360,7 +372,7 @@ const SavedItemsList: React.FC<SavedItemsListProps> = ({
                           </select>
                         </div>
                       )}
-                      
+
                       {/* Share button */}
                       {onItemShare && (
                         <button
@@ -372,7 +384,7 @@ const SavedItemsList: React.FC<SavedItemsListProps> = ({
                           <ShareIcon className="h-5 w-5" />
                         </button>
                       )}
-                      
+
                       {/* Remove button */}
                       <button
                         type="button"
